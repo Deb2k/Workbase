@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button"
 import { FormControl, FormField, FormItem, FormLabel, FormMessage,Form } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import { authClient } from "@/lib/auth-client"
+import { toast } from "sonner"
 
 
 const loginSchema = z.object({
@@ -18,7 +20,7 @@ const loginSchema = z.object({
 
 type loginFormValues = z.infer<typeof loginSchema>
 
-export default function LoginForm(){
+export default  function LoginForm(){
     const router = useRouter()
 
     const form = useForm<loginFormValues>({
@@ -30,7 +32,18 @@ export default function LoginForm(){
     })
    
     const onSubmit = async (values:loginFormValues) =>{
-        console.log(values)
+        await authClient.signIn.email({
+            email: values.email,
+            password: values.password,
+            callbackURL:"/",
+        },{
+            onSuccess:()=>{
+                router.push("/")
+            },
+            onError:(ctx)=>{
+                toast.error(ctx.error.message)
+            },
+        })
     }
 
     const isPending = form.formState.isSubmitting;
