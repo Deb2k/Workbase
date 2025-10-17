@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation"
 import { useForm} from "react-hook-form"
-import {email, z} from "zod"
+import { z} from "zod"
 import {zodResolver} from "@hookform/resolvers/zod"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import { authClient } from "@/lib/auth-client"
 import { toast } from "sonner"
+import Image from "next/image"
 
 
 const registerSchema = z.object({
@@ -79,6 +80,13 @@ export default function RegisterForm(){
                                 type="button"
                                 disabled ={isPending}
                                 >
+                                <Image
+                                alt="google image"
+                                src="/logos/google.svg"
+                                height={20}
+                                width={20}
+                                />
+                             
                               Continue with Google
                                 </Button>
                                   <Button
@@ -87,6 +95,12 @@ export default function RegisterForm(){
                                 type="button"
                                 disabled ={isPending}
                                 >
+                                <Image
+                                alt="github image"
+                                src="/logos/github.svg"
+                                height={20}
+                                width={20}
+                                />
                               Continue with Github
                                 </Button>
                             </div>
