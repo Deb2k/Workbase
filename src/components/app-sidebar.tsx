@@ -26,6 +26,7 @@ import {
   SidebarMenu,
 } from "@/components/ui/sidebar";
 import { authClient } from "@/lib/auth-client";
+import { useHasActiveSubscription } from "@/featers/subscriptions/hooks/use-subscription";
 
 
 
@@ -51,6 +52,7 @@ const menuItems = [
 export const AppSidebar = () => {
   const pathname = usePathname();
   const router = useRouter();
+  const {hasActiveSubscription,isLoading}  = useHasActiveSubscription()
  
   return (
     <Sidebar collapsible="icon">
@@ -90,12 +92,13 @@ export const AppSidebar = () => {
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
-          <SidebarMenuItem>
+        {!hasActiveSubscription&&!isLoading&&(
+              <SidebarMenuItem>
             <SidebarMenuButton
               tooltip="Upgrade to Pro"
               asChild
               className="gap-x-4 h-10 px-4"
-              onClick={()=>{}}
+              onClick={()=>authClient.checkout({slug:"pro"})}
              >
               <Link href="/" prefetch>
                 <StarIcon className="h-4 w-4" />
@@ -103,12 +106,14 @@ export const AppSidebar = () => {
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
-                    <SidebarMenuItem>
+        )}
+       
+          <SidebarMenuItem>
             <SidebarMenuButton
              tooltip="Billing Portal"
               asChild
               className="gap-x-4 h-10 px-4"
-              onClick={()=>{ }}
+              onClick={()=>authClient.customer.portal()}
             >
               <Link href="/" prefetch>
                 <CreditCardIcon className="h-4 w-4" />
