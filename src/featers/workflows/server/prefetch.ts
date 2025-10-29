@@ -5,6 +5,6 @@ type Input = inferInput<typeof trpc.workflows.getMany>
 
 /*Prefect all workflows*/
 
-export const prefectWorkflows = (params:Input) =>{
+export const prefetchWorkflows = (params:Input) =>{
    return prefetch(trpc.workflows.getMany.queryOptions(params))
 }
