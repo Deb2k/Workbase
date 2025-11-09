@@ -1,4 +1,4 @@
-import WorkflowsList, { WorkflowsContainer } from '@/featers/workflows/components/workflows'
+import WorkflowsList, { WorkflowsContainer, WorkflowsError, WorkflowsLoading } from '@/featers/workflows/components/workflows'
 import { workflowsparamsLoader } from '@/featers/workflows/server/params-loader'
 import { prefetchWorkflows } from '@/featers/workflows/server/prefetch'
 import { requireAuth } from '@/lib/auth-utils'
@@ -21,8 +21,8 @@ export default async function page({searchParams}:Props) {
   return (
    <WorkflowsContainer>
        <HydrateClient>
-       <ErrorBoundary fallback={<p>Error!</p>}>
-          <Suspense fallback={<p>loading....</p>}>
+       <ErrorBoundary fallback={<WorkflowsError/>}>
+          <Suspense fallback={<WorkflowsLoading/>}>
              <WorkflowsList/>
           </Suspense>
        </ErrorBoundary>
