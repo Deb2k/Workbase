@@ -1,5 +1,5 @@
 
-import { Authlayout } from "@/featers/auth/components/auth-layout"
+import { Authlayout } from "@/features/auth/components/auth-layout"
 
 
 const Layout = ({children}:{children:React.ReactNode}) =>{

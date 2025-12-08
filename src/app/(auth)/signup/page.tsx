@@ -1,4 +1,4 @@
-import RegisterForm from '@/featers/auth/components/register-from'
+import RegisterForm from '@/features/auth/components/register-from'
 import { requireUnauth } from '@/lib/auth-utils'
 
 
