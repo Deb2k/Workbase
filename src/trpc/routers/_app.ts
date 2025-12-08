@@ -1,6 +1,6 @@
 
 import {   createTRPCRouter } from '../init';
-import { workflowRouter } from '@/featers/workflows/server/routers';
+import { workflowRouter } from '@/features/workflows/server/routers';
 
 
 export const appRouter = createTRPCRouter({
