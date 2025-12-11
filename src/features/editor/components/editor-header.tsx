@@ -20,30 +20,30 @@ import {
   useUpdateWorkflowName,
 } from "@/features/workflows/hooks/use-workflows";
 // import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
-// import { useAtomValue } from "jotai";
-// import { editorAtom } from "@/features/editor/store/atoms";
+import { useAtomValue } from "jotai";
+import { editorAtom } from "@/features/editor/store/atoms";
 
 export const EditorSaveButton = ({ workflowId }: { workflowId: string }) => {
-//   const editor = useAtomValue(editorAtom);
-//   const saveWorkflow = useUpdateWorkflow();
+  const editor = useAtomValue(editorAtom);
+  const saveWorkflow = useUpdateWorkflow();
 
-//   const handleSave = () => {
-//     if (!editor) {
-//       return;
-//     }
-//     const nodes = editor.getNodes();
-//     const edges = editor.getEdges();
+  const handleSave = () => {
+    if (!editor) {
+      return;
+    }
+    const nodes = editor.getNodes();
+    const edges = editor.getEdges();
 
-//     saveWorkflow.mutateAsync({
-//       id: workflowId,
-//       nodes,
-//       edges,
-//     });
-//   };
+    saveWorkflow.mutateAsync({
+      id: workflowId,
+      nodes,
+      edges,
+    });
+  };
 
   return (
     <div className="ml-auto flex items-center gap-2">
-      <Button size="sm" onClick={()=>{}} disabled={false}>
+      <Button size="sm" onClick={handleSave} disabled={saveWorkflow.isPending}>
         <SaveIcon className="size-4 mr-2" />
         Save
       </Button>
