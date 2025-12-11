@@ -37,9 +37,9 @@ export function WorkflowNode({
             {children}
             {name && (
                 <NodeToolbar
-                position={Position.Bottom}
-                isVisible
-                className="max-w-[200px] text-center"
+                 position={Position.Bottom}
+                 isVisible
+                 className="max-w-[200px] text-center"
                 >
                     <p className="font-medium text-sm text-foreground">{name}</p>
                     {description && <p className="text-sm text-muted-foreground truncate">
